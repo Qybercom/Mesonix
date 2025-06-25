@@ -11,6 +11,7 @@ namespace Qybercom {
 				unsigned short _pinSS;
 				unsigned short _pinReset;
 				unsigned short _debounceUUID;
+				unsigned short _debounceUUIDCount;
 				String _uuid;
 				bool _uuidChanged;
 				bool _expectInserted;

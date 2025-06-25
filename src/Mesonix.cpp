@@ -8,7 +8,8 @@ using namespace Qybercom::Mesonix;
 void Mesonix::_init (unsigned short pinSS, unsigned short pinReset) {
 	this->_pinSS = pinSS;
 	this->_pinReset = pinReset;
-	this->_debounceUUID = 5;
+	this->_debounceUUID = 0; // use 2-5
+	this->_debounceUUIDCount = 0;
 	this->_uuid = "";
 	this->_uuidChanged = false;
 	this->_expectInserted = true;
@@ -68,17 +69,17 @@ void Mesonix::Pipe () {
 
 	bool valueChanged = this->_uuid != value;
 	if (this->_expectInserted) {
-		if (value == "") this->_debounceUUID = 0;
-		else this->_debounceUUID++;
+		if (value == "") this->_debounceUUIDCount = 0;
+		else this->_debounceUUIDCount++;
 	}
 
 	if (this->_expectEjected) {
-		if (value != "") this->_debounceUUID = 0;
-		else this->_debounceUUID++;
+		if (value != "") this->_debounceUUIDCount = 0;
+		else this->_debounceUUIDCount++;
 	}
 
 	if (valueChanged) {
-		if (this->_debounceUUID == 5) {
+		if (this->_debounceUUIDCount == this->_debounceUUID) {
 			this->_uuid = value;
 			this->_uuidChanged = true;
 
