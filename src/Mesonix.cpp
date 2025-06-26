@@ -44,6 +44,10 @@ String Mesonix::UUID () {
 	return this->_uuid;
 }
 
+String Mesonix::UUIDActual () {
+	return this->_uuidActual;
+}
+
 bool Mesonix::UUIDChanged () {
 	bool out = this->_uuidChanged;
 	this->_uuidChanged = false;
@@ -67,6 +71,8 @@ void Mesonix::Pipe () {
 		}
 	}
 
+	this->_uuidActual = value;
+
 	bool valueChanged = this->_uuid != value;
 	if (this->_expectInserted) {
 		if (value == "") this->_debounceUUIDCount = 0;
@@ -82,6 +88,7 @@ void Mesonix::Pipe () {
 		if (this->_debounceUUIDCount >= this->_debounceUUID) {
 			this->_uuid = value;
 			this->_uuidChanged = true;
+			this->_debounceUUIDCount = this->_debounceUUID;
 
 			if (value == "") {
 				this->_expectInserted = true;

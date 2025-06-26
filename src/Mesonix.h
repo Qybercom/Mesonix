@@ -13,6 +13,7 @@ namespace Qybercom {
 				unsigned short _debounceUUID;
 				unsigned short _debounceUUIDCount;
 				String _uuid;
+				String _uuidActual;
 				bool _uuidChanged;
 				bool _expectInserted;
 				bool _expectEjected;
@@ -27,7 +28,7 @@ namespace Qybercom {
 				unsigned short UUIDReadDebounce();
 
 				String UUID();
-
+				String UUIDActual();
 				bool UUIDChanged();
 
 				void InitMFRC();
