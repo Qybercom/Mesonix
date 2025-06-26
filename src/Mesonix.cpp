@@ -80,7 +80,7 @@ void Mesonix::Pipe () {
 	}
 
 	if (this->_expectEjected) {
-		if (value != "") this->_debounceUUIDCount = 0;
+		if (value != "" && !valueChanged) this->_debounceUUIDCount = 0;
 		else this->_debounceUUIDCount++;
 	}
 
