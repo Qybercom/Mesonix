@@ -79,7 +79,7 @@ void Mesonix::Pipe () {
 	}
 
 	if (valueChanged) {
-		if (this->_debounceUUIDCount == this->_debounceUUID) {
+		if (this->_debounceUUIDCount >= this->_debounceUUID) {
 			this->_uuid = value;
 			this->_uuidChanged = true;
 
